@@ -1,5 +1,5 @@
 FROM node:latest AS build
-ADD TASK=dev
+ARG TASK=dev
 COPY sample-react/ /hemanth/
 WORKDIR /hemanth
 RUN npm install && \
