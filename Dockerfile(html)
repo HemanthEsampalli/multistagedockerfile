@@ -1,0 +1,14 @@
+  1 FROM node:latest AS build
+  2 ARG TASK=dev
+  3 ADD templatemo_596_electric_xtra /hemanth
+  4 WORKDIR /hemanth
+  5
+  6 FROM nginx AS run
+  7 ENV workspace=dev
+  8 COPY --from=build /hemanth /usr/share/nginx/html
+  9 RUN useradd -m test
+ 10 #USER test
+ 11 EXPOSE 80
+ 12 ENTRYPOINT ["nginx"]
+ 13 CMD ["-g", "daemon off;"]
+~                              
